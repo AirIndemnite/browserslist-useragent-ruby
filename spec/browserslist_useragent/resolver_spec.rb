@@ -103,12 +103,26 @@ RSpec.describe BrowserslistUseragent::Resolver do
         )
       ).to eq(family: 'Chrome', version: '44.0.0')
 
-      # chome mobile
+      # chrome mobile
       expect(
         resolve_user_agent(
           'Mozilla/5.0 (Linux; Android 6.0.0; Pixel Build/Unknown; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.0.0 Mobile Safari/537.36'
         )
       ).to eq(family: 'Chrome', version: '60.0.0')
+
+      # # Facebook app
+      expect(
+        resolve_user_agent(
+          'Mozilla/5.0 (Linux; Android 7.0; SM-J730F Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/98.0.4758.101 Mobile Safari/537.36 [FB_IAB/Orca-Android;FBAV/350.1.0.9.89;]'
+        )
+      ).to eq(family: 'Chrome', version: '98.0.4758')
+
+      # Instagram app
+      expect(
+        resolve_user_agent(
+          'Mozilla/5.0 (Linux; Android 9; Redmi Note 5 Build/PKQ1.180904.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36 Instagram 219.0.0.12.117 Android'
+        )
+      ).to eq(family: 'Chrome', version: '97.0.4692')
     end
 
     it 'resolves firefox properly' do

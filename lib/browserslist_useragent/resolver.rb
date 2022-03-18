@@ -49,6 +49,17 @@ module BrowserslistUseragent
       family = 'SamsungInternet' if agent.family == 'Samsung Internet'
       family = 'UCAndroid' if agent.family == 'UC Browser'
 
+      # Case D: Access from some app browsers resolves to the app's family,
+      # which are not included in the caniuse database,
+      # even though they use Blink/Chromium rendering engine
+      # In this case, the family is set to Chrome with the corresponding version
+      if %w[Facebook Instagram].include? agent.family
+        return {
+          family: 'Chrome',
+          version: VersionNormalizer.new(user_agent_string[/(?<=Chrome\/)[^ ]*/]).call
+        }
+      end
+
       { family: family, version: version }
     end
 
