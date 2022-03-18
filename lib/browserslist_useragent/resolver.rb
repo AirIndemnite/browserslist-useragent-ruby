@@ -3,7 +3,7 @@
 # rubocop: disable Metrics/AbcSize, Metrics/CyclomaticComplexity
 # rubocop: disable Metrics/MethodLength, Metrics/PerceivedComplexity
 module BrowserslistUseragent
-  # Resolves uaser agent string to {family, version} hash
+  # Resolves user agent string to {family, version} hash
   class Resolver
     attr_reader :user_agent_string
 
@@ -40,9 +40,10 @@ module BrowserslistUseragent
       # @see https://github.com/Fyrd/caniuse/issues/3518
       family = 'Chrome' if agent.family.include?('Chrome Mobile')
       family = 'Chrome' if agent.family == 'HeadlessChrome'
-      family = 'Firefox' if agent.family == 'Firefox Mobile'
+      family = 'Edge' if agent.family == 'Edge Mobile'
       family = 'Explorer' if agent.family == 'IE'
       family = 'ExplorerMobile' if agent.family == 'IE Mobile'
+      family = 'Firefox' if agent.family == 'Firefox Mobile'
       family = 'OperaMobile' if agent.family == 'Opera Mobile'
       family = 'QQAndroid' if agent.family == 'QQ Browser Mobile'
       family = 'SamsungInternet' if agent.family == 'Samsung Internet'

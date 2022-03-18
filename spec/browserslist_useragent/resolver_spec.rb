@@ -65,6 +65,13 @@ RSpec.describe BrowserslistUseragent::Resolver do
           'Mozilla/5.0 (Windows NT 6.4;) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.0.0 Safari/537.36 Edge/14.1.0.10122'
         )
       ).to eq(family: 'Edge', version: '14.1.0')
+
+      # edge mobile
+      expect(
+        resolve_user_agent(
+          'Mozilla/5.0 (Linux; Android 10; ELE-L29) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Mobile Safari/537.36 EdgA/99.0.1150.30'
+        )
+      ).to eq(family: 'Edge', version: '99.0.1150')
     end
 
     it 'resolves chrome/android properly' do
